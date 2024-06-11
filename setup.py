@@ -7,7 +7,7 @@ with open('DESCRIPTION.txt') as file:
 
 # some more details
 CLASSIFIERS = [
-    'Development Status :: 3 - Alpha',
+    'Development Status :: 4 - Beta',
     'Environment :: MacOS X',
     'Framework :: IDLE',
     'Intended Audience :: Science/Research',
@@ -21,12 +21,12 @@ CLASSIFIERS = [
   
 # calling the setup function 
 setup(name='Chimera_Buster',
-      version='1.0.0',
+      version='1.1.0',
       description='eliminates chimeric reads by comparing the UMI sequences and finding any matches in the 5 prime or 3 prime UMIs and keeping the sequence that has the highest prevalence',
       long_description=long_description,
-      url='https://github.com/JessicaA2019/Chimera_Buster/',
+      url='https://github.com/JessicaA2019/Chimera_Buster',
       author='Jessica Lauren ALbert',
-      author_email='jessica.albert@seattlechildrens.org',
+      author_email='jessica.albert2001@gmail.com',
       license='MIT',
       packages = find_packages(),
       entry_points = {'console_scripts': ['Chimera_Buster = Chimera_buster.CLI_chimera_buster:main']},

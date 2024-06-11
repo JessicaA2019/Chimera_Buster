@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "Chimera_Buster"
-version = "1.0.0"
+version = "1.1.0"
 authors = [
   { name="Jessica Lauren Albert", email="jessica.albert2001@gmail.com" },
 ]
@@ -12,7 +12,7 @@ description = "eliminates chimeric reads by comparing the UMI sequences and find
 readme = "README.md"
 license = {file = "LICENSE.txt"}
 keywords = ["HIV", "UMIs", "PCR", "chimeras", "ONT sequencing"]	
-requires-python = ">=3.11"
+requires-python = ">=3"
 classifiers = [
 	"Programming Language :: Python :: 3",
    	"License :: OSI Approved :: MIT License",
@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 [project.scripts]
-HIV_Isoform_filter = "Chimera_buster.CLI_chimera_buster:main"
+Chimera_Buster = "Chimera_Buster.CLI_chimera_buster:main"
 
 [project.urls]
-Homepage = "https://github.com/JessicaA2019/Chimera_Buster/tree/main"
+Homepage = "https://github.com/JessicaA2019/Chimera_Buster"
