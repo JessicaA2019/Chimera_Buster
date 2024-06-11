@@ -21,7 +21,7 @@ CLASSIFIERS = [
   
 # calling the setup function 
 setup(name='Chimera_Buster',
-      version='1.1.0',
+      version='1.1.1',
       description='eliminates chimeric reads by comparing the UMI sequences and finding any matches in the 5 prime or 3 prime UMIs and keeping the sequence that has the highest prevalence',
       long_description=long_description,
       url='https://github.com/JessicaA2019/Chimera_Buster',
@@ -34,3 +34,4 @@ setup(name='Chimera_Buster',
       keywords='HIV UMIs PCR Chimeras ONTsequencing',
       include_package_data = True
       )
+

@@ -4,11 +4,11 @@
 
 import argparse
 import os
-from Chimera_Buster.chimera_buster import *
+from chimera_buster import *
 
 def main():
     # create parser object
-    parser = argparse.ArgumentParser(prog = "Chimera_Buster",
+    parser = argparse.ArgumentParser(prog = "Chimera_buster",
                                      formatter_class = argparse.RawDescriptionHelpFormatter,
                                      description =('''UMI-based Chimera Buster
 Author: Jessica L Albert'''))

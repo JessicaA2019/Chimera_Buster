@@ -8,11 +8,11 @@ The code is Python 3.
 
 Installation
 ------------
-$pip install Chimera_Buster
+
 
 Example
 --------
-$Chimera_Buster [options] input_final_name input_prelim_name output_file_prefix
+$python3 CLI_chimera_buster_pd.py [options] input_final_name input_prelim_name output_file_prefix
 positional arguments:
 
 Arguement		Function

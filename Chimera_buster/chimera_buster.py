@@ -145,7 +145,7 @@ def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance):
     #set up pandas df and put in decending order of concesus size 1st then prelim consensus size 2nd
     df = pd.DataFrame(working_list, columns = ['Name', 'UMI_fwd', 'UMI_rev', 'Consensus_size', 'prelim_size'])
     df = df.sort_values(by=['Consensus_size', 'prelim_size'], ascending = [False, False], ignore_index=True)
-    df.to_csv(("test_outputs.csv"), index=False)
+    #df.to_csv(("test_outputs.csv"), index=False)
     
 
     lap_time = time.time()
@@ -157,7 +157,8 @@ def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance):
     #drop any exact matches in the UMIs and keep only top result (which will have the highest prevelence)
     df_no_f_dups = df.drop_duplicates(subset='UMI_fwd', keep='first')
     df_no_dups = df_no_f_dups.drop_duplicates(subset='UMI_rev', keep='first')
-    df_no_dups.to_csv(("test_no_dups_outputs.csv"), index=False)
+    #df_no_dups.to_csv(("test_no_dups_outputs.csv"), index=False)
+    
 
     
     fwd_sample_num_list = list(df_no_dups['Name'])
@@ -192,6 +193,7 @@ def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance):
     #make df of chimeras and non-chimeras
     df_non_chimeras = df.loc[df['Name'].isin(nonchimera_list)]
     df_chimeras = df.loc[~df['Name'].isin(nonchimera_list)]
+
     
     print("All samples processed. (%s seconds)                                              " % (time.time() - lap_time))
     lap_time = time.time()
