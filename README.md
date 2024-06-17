@@ -4,17 +4,17 @@ This package takes concensus fasta files from the MrHamer pipeline and eliminate
 ******************
 ## Installation
 ##### Requires python<=3.10
-## Quick Install
+### Quick Install
 ```bash
 pip install Chimera_Buster
 ```
-## Manual Install
+### Manual Install
 ```bash
 git clone https://github.com/JessicaA2019/Chimera_Buster.git 
 cd Chimera_Buster
 python setup.py install
 ```
-## Dependencies
+### Dependencies
 Some dependencies currently do not install with Chimera_Buster. Please pip install the following dependencies:
 * edlib
 * pandas
