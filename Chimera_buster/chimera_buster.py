@@ -125,7 +125,7 @@ def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance):
     for sublist in sample_list:
         sample = []
         #add cluster name
-        name = sublist[0][10:-9]
+        name = sublist[0][10:]
         sample.append(name)
         #add fwd and rev umi seqs from header
         umi_fwd = sublist[4][12:]
@@ -136,7 +136,7 @@ def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance):
         size = sublist[-3][5:]
         sample.append(int(size))
         # add earlier cluster size
-        pre_size = size_dict[name]
+        pre_size = size_dict[name[:-2]]
         sample.append(int(pre_size))
         if len(sample) != 5:
             print ("Error")

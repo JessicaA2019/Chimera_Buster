@@ -4,7 +4,7 @@
 
 import argparse
 import os
-from chimera_buster import *
+from Chimera_buster.chimera_buster import *
 
 def main():
     # create parser object
