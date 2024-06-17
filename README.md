@@ -24,4 +24,3 @@ options:
 ## License
 
 MIT - Copyright (c) 2024 Jessica Lauren Albert
-
