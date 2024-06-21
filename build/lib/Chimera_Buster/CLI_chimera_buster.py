@@ -14,9 +14,14 @@ def main():
 Author: Jessica L Albert'''))
  
     # defining arguments for parser object
-    parser.add_argument("input_folder", type = str, 
-                        metavar = "input_folder", default = None,
-                        help = "Designates MrHamer sample folder to process UMIs from. This is required.")
+    parser.add_argument("input_final", type = str, 
+                        metavar = "input_final_name", default = None,
+                        help = "Designates clusters_concesus.fasta file from the clustering_consensus folder to be filtered. This is required.")
+
+    parser.add_argument("input_prelim", type = str, 
+                        metavar = "input_prelim_name", default = None,
+                        help = "Designates clusters_concesus.fasta file from the clustering folder to be filtered. This is required.")
+
 
     parser.add_argument("output", type = str, 
                         metavar = "output_file_prefix", default = None,
@@ -25,29 +30,29 @@ Author: Jessica L Albert'''))
     parser.add_argument("-m", "--mismatch", type = int,
                         metavar = "int", default = 1,
                         help = "Designates the maximun number of mismatched/indel bases. Default is 1.")
-     
 
+    parser.add_argument("-c", "--check_clusters", type = bool,
+                        metavar = "True/False", default = False,
+                        help = "When set to true, chimeric reads are rechecked to account for any clustering issues earlier in the pipeline. WARNING: this part of the code is slow and is only recommended for low input samples.")
  
     # parse the arguments from standard input
     args = parser.parse_args()
 
-    folder = './' + args.input_folder + '/clustering_consensus/'
-    sub_folders = (os.listdir(folder))
-    for folder in sub_folders:
-        if folder != '.DS_Store':
-            sample_folder = folder
-    
-    sample_file = args.input_folder + "/clustering_consensus/" + sample_folder + "/clusters_consensus.fasta"
+    sample_file = args.input_final
 
-    size_file = args.input_folder + "/clustering/" + sample_folder + "/clusters_consensus.fasta"
+    size_file = args.input_prelim
     
     output_name = args.output
+         
          
     # calling functions depending on type of argument
     if args.mismatch !=None:
         mismatch_tolerance = args.mismatch
+        
+    if args.check_clusters !=None:
+        check_clusters_status = args.check_clusters
              
-    chimera_buster(sample_file, size_file, output_name, mismatch_tolerance)
+    chimera_buster(sample_file, size_file, output_name, mismatch_tolerance,check_clusters_status)
     
 if __name__ == "__main__":
     # calling the main function

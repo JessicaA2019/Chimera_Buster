@@ -94,7 +94,7 @@ def check_REV_UMI(rev_sample_num_list, rev_umi, mismatch_tolerance,q):
 
 ##############################################################################
 
-def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance):
+def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance, check_clusters_status):
     start_time = time.time()
 
     print ("Loading and preparing samples...")
@@ -167,6 +167,7 @@ def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance):
     rev_umi = list(df_no_dups['UMI_rev'])
     nonchimera_list =[]
 
+    print ("Checking for duplicate UMIs...")
     #check for any non-exact matches using mismatch_tolerance as the cut off
     if mismatch_tolerance != 0:
         
@@ -186,14 +187,36 @@ def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance):
             if sample in rev_sample_list:
                 nonchimera_list.append(sample)
                 rev_sample_list.remove(sample)
+                
+        #make df of preliminary chimeras and non-chimeras
+        if check_clusters_status == True:
+            df_non_chimeras_prelim = df.loc[df['Name'].isin(nonchimera_list)]
+            df_chimeras_prelim = df.loc[~df['Name'].isin(nonchimera_list)]
+            print ("Checking for missorted clusters...")
+        
+            #check for clustering issues
+            cluster_lap_time = time.time()
+            num1 = 0
+            while num1 < len(df_non_chimeras_prelim["Name"]):
+                num2 = 0
+                while num2 < len(df_chimeras_prelim["Name"]):
+                    fwd_chimera = check_mismatch(str(df_non_chimeras_prelim.iloc[num1,1]), str(df_chimeras_prelim.iloc[num2,1]), mismatch_tolerance)
+                    rev_chimera = check_mismatch(str(df_non_chimeras_prelim.iloc[num1,2]), str(df_chimeras_prelim.iloc[num2,2]), mismatch_tolerance)
+                    if fwd_chimera == True and rev_chimera == True:
+                            nonchimera_list.append(df_chimeras_prelim.iloc[num2,0])
+                    num2 = num2 + 1
+                num1 = num1 + 1
+                if num1 % 100 == 0:
+                    print(str(round((num1/len(df_non_chimeras_prelim["Name"])*100), 2)) + " percent of clusters checked. (%s seconds)              " % (time.time() - cluster_lap_time), end = '\r' )
+                    cluster_lap_time = time.time()
+                
     #allows for skipping the lengthy process above when not needed
     else:
         nonchimera_list = fwd_sample_num_list
-
-    #make df of chimeras and non-chimeras
+        
+    #make df of final chimeras and non-chimeras
     df_non_chimeras = df.loc[df['Name'].isin(nonchimera_list)]
     df_chimeras = df.loc[~df['Name'].isin(nonchimera_list)]
-
     
     print("All samples processed. (%s seconds)                                              " % (time.time() - lap_time))
     lap_time = time.time()
