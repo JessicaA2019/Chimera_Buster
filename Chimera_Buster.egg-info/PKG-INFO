@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: Chimera_Buster
-Version: 1.2.0
+Version: 1.2.1
 Summary: eliminates chimeric reads by comparing the UMI sequences and finding any matches in the 5 prime or 3 prime UMIs and keeping the sequence that has the highest prevalence
 Home-page: https://github.com/JessicaA2019/Chimera_Buster
 Author: Jessica Lauren ALbert

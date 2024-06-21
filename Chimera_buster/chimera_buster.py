@@ -189,7 +189,7 @@ def chimera_buster(sample_file, size_file, output_name, mismatch_tolerance, chec
                 rev_sample_list.remove(sample)
                 
         #make df of preliminary chimeras and non-chimeras
-        if check_clusters_status == True:
+        if check_clusters_status == "True":
             df_non_chimeras_prelim = df.loc[df['Name'].isin(nonchimera_list)]
             df_chimeras_prelim = df.loc[~df['Name'].isin(nonchimera_list)]
             print ("Checking for missorted clusters...")

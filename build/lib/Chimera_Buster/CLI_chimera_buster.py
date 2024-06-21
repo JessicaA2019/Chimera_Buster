@@ -31,9 +31,9 @@ Author: Jessica L Albert'''))
                         metavar = "int", default = 1,
                         help = "Designates the maximun number of mismatched/indel bases. Default is 1.")
 
-    parser.add_argument("-c", "--check_clusters", type = bool,
-                        metavar = "True/False", default = False,
-                        help = "When set to true, chimeric reads are rechecked to account for any clustering issues earlier in the pipeline. WARNING: this part of the code is slow and is only recommended for low input samples.")
+    parser.add_argument("-c", "--check_clusters", type = str,
+                        metavar = "True/False", default = "False",
+                        help = "When set to True, chimeric reads are rechecked to account for any clustering issues earlier in the pipeline. WARNING: this part of the code is slow and is only recommended for low input samples.")
  
     # parse the arguments from standard input
     args = parser.parse_args()
