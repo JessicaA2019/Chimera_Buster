@@ -1,4 +1,5 @@
 # Chimera_Buster
+[![DOI](https://zenodo.org/badge/813782852.svg)](https://zenodo.org/doi/10.5281/zenodo.13755941)
 ### Overview
 This package takes concensus fasta files from the MrHamer2.0 pipeline and eliminates chimeric reads by comparing the UMI sequences and finding any matches in the 5' or 3' UMIs and keeping the sequence that has the highest prevalence.
 ******************
